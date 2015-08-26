@@ -4,13 +4,13 @@ var gaUtils = {
         var action = me.attr('ga-action') || me.attr('ga-trigger');
         var category = me.attr('ga-category');
         var label = me.attr('ga-label') || false;
-        try {
+        try {            
             if (label) {
-        //        console.log(['_trackEvent', category, action, label]);
-                _gaq.push(['_trackEvent', category, action, label]);
+//                console.log(['send','event', category, action]);
+                ga('send', 'event', category, action);
             } else {
-        //        console.log(['_trackEvent', category, action, label]);
-                _gaq.push(['_trackEvent', category, action]);
+//                console.log(['send','event', category, action, label]);
+                ga('send','event', category, action, label);
             }
         } catch (err) {
             console.log(err);
