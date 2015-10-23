@@ -4,13 +4,13 @@ var gaUtils = {
         var action = me.attr('ga-action') || me.attr('ga-trigger');
         var category = me.attr('ga-category');
         var label = me.attr('ga-label') || false;
-        try {            
+        try {
             if (label) {
+                ga('send','event', category, action, label);
 //                console.log(['send','event', category, action]);
-                ga('send', 'event', category, action);
             } else {
 //                console.log(['send','event', category, action, label]);
-                ga('send','event', category, action, label);
+                ga('send', 'event', category, action);
             }
         } catch (err) {
             console.log(err);
@@ -32,8 +32,8 @@ var gaUtils = {
         $('[ga-trigger]').each(function(){
             var trigger = $(this).attr('ga-trigger');
             if($.inArray(trigger, events) === -1){
-                events.push(trigger); 
-            }            
+                events.push(trigger);
+            }
         });
         for(var i = 0; i < events.length; i++){
             $(document).on(events[i], '[ga-trigger="'+events[i]+'"]', this.sendGA);
